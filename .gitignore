@@ -1,0 +1,15 @@
+echo 
+"Library/
+Logs/
+Temp/
+Obj/
+Builds/
+Build/
+UserSettings/
+.vs/
+.idea/
+.DS_Store
+*.log
+*.pidb
+*.suo
+*.userprefs" >> .gitignore
