@@ -17,9 +17,7 @@ MonoBehaviour:
   m_PlatformId: ad48d16a66894befa4d8181998c3cb09
   m_PlatformBuildProfile:
     rid: 8794061745298079746
-  m_Scenes:
-  - m_enabled: 1
-    m_path: Assets/Scenes/SampleScene.unity
+  m_Scenes: []
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
@@ -34,8 +32,8 @@ MonoBehaviour:
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
-    - line: '|   companyName: DefaultCompany'
-    - line: '|   productName: Game2048'
+    - line: '|   companyName: com.vinhhuynh.2048'
+    - line: '|   productName: 2048'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
@@ -188,7 +186,7 @@ MonoBehaviour:
     - line: '|     Android: com.DefaultCompany.com.unity.template.mobile2D'
     - line: '|     Lumin: com.DefaultCompany.com.unity.template.mobile2D'
     - line: '|     Standalone: com.DefaultCompany.com.unity.template.mobile2D'
-    - line: '|     iPhone: com.DefaultCompany.com.unity.template.mobile2D'
+    - line: '|     iPhone: com.vinhhuynh.2048'
     - line: '|     tvOS: com.DefaultCompany.com.unity.template.mobile2D'
     - line: '|   buildNumber:'
     - line: '|     Standalone: 0'
@@ -212,7 +210,7 @@ MonoBehaviour:
     - line: '|   StripUnusedMeshComponents: 0'
     - line: '|   strictShaderVariantMatching: 0'
     - line: '|   VertexChannelCompressionMask: 4054'
-    - line: '|   iPhoneSdkVersion: 988'
+    - line: '|   iPhoneSdkVersion: 989'
     - line: '|   iOSSimulatorArchitecture: 0'
     - line: '|   iOSTargetOSVersionString: 13.0'
     - line: '|   tvOSSdkVersion: 0'
@@ -312,7 +310,15 @@ MonoBehaviour:
     - line: '|   AndroidAppBundleSizeToValidate: 150'
     - line: '|   AndroidReportGooglePlayAppDependencies: 1'
     - line: '|   androidSymbolsSizeThreshold: 800'
-    - line: '|   m_BuildTargetIcons: []'
+    - line: '|   m_BuildTargetIcons:'
+    - line: '|   - m_BuildTarget: '
+    - line: '|     m_Icons:'
+    - line: '|     - serializedVersion: 2'
+    - line: '|       m_Icon: {fileID: 2800000, guid: 521f62a2e94604100b017b03087b1585,
+        type: 3}'
+    - line: '|       m_Width: 128'
+    - line: '|       m_Height: 128'
+    - line: '|       m_Kind: 0'
     - line: '|   m_BuildTargetPlatformIcons:'
     - line: '|   - m_BuildTarget: Android'
     - line: '|     m_Icons:'
@@ -561,6 +567,9 @@ MonoBehaviour:
     - line: '|     m_Formats: 03000000'
     - line: '|   - serializedVersion: 3'
     - line: '|     m_BuildTarget: WebGL'
+    - line: '|     m_Formats: 03000000'
+    - line: '|   - serializedVersion: 3'
+    - line: '|     m_BuildTarget: iOS'
     - line: '|     m_Formats: 03000000'
     - line: '|   playModeTestRunnerEnabled: 0'
     - line: '|   runPlayModeTestAsEditModeTest: 0'

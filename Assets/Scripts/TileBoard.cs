@@ -14,6 +14,9 @@ public class TileBoard : MonoBehaviour
     private TileGrid grid;
     private List<Tile> tiles;
     private bool wating;
+
+    private Vector2 startTouchPosition, endTouchPosition;
+
     private void Awake()
     {
         grid = GetComponentInChildren<TileGrid>();
@@ -34,11 +37,33 @@ public class TileBoard : MonoBehaviour
     public void CreateTile()
     {
         Tile tile = Instantiate(tilePrefab, grid.transform);
-        tile.SetState(tileStates[0],2);
+        int randomNumber = (Random.value < 0.9f) ? 2 : 4; // 90% is 2, 10% is 4
+        int tileIndex = randomNumber == 2 ? 0 : 1;
+        tile.SetState(tileStates[tileIndex],randomNumber);
         tile.Spawn(grid.GetRandomEmptyCell());
         tiles.Add(tile);
     }
+    private void DetectSwipe()
+    {
+        Vector2 swipeDirection = endTouchPosition - startTouchPosition;
 
+        if (swipeDirection.magnitude < 50) return; 
+
+        if (Mathf.Abs(swipeDirection.x) > Mathf.Abs(swipeDirection.y))
+        {
+            if (swipeDirection.x > 0)
+                MoveTiles(Vector2Int.right, grid.width - 2, -1, 0, 1); 
+            else
+                MoveTiles(Vector2Int.left, 1, 1, 0, 1); 
+        }
+        else
+        {
+            if (swipeDirection.y > 0)
+                MoveTiles(Vector2Int.up, 0, 1, 1, 1); // Vuốt lên
+            else
+                MoveTiles(Vector2Int.down, 0, 1, grid.height - 2, -1); // Vuốt xuống
+        }
+    }
     private void Update()
     {
         if (!wating) {
@@ -50,6 +75,23 @@ public class TileBoard : MonoBehaviour
                 MoveTiles(Vector2Int.left, 1, 1, 0, 1);
             } else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
                 MoveTiles(Vector2Int.right, grid.width - 2, -1, 0, 1);
+            }
+        }
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    startTouchPosition = touch.position;
+                    break;
+
+                case TouchPhase.Ended:
+                    endTouchPosition = touch.position;
+                    DetectSwipe();
+                    break;
             }
         }
         
