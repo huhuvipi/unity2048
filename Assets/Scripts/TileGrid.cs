@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TileGrid : MonoBehaviour
 {
-       public TileRow[] rows { get; private set; }
+    public TileRow[] rows { get; private set; }
     public TileCell[] cells { get; private set; }
 
     public int size => cells.Length;
@@ -14,18 +14,10 @@ public class TileGrid : MonoBehaviour
     {
         rows = GetComponentsInChildren<TileRow>();
         cells = GetComponentsInChildren<TileCell>();
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < rows.Length; i ++) {
-            for (int j = 0; j < rows[i].cells.Length; j++)
-            {
-                rows[j].cells[i].coodinates = new Vector2Int(i, j);
-            }
+        for (int i = 0; i < cells.Length; i ++) {
+            cells[i].coodinates = new Vector2Int(i % width, i / width);
         }
     }
-
 
     public TileCell GetCell(int i, int j) 
     {
@@ -50,7 +42,7 @@ public class TileGrid : MonoBehaviour
     }
 
     public TileCell GetRandomEmptyCell() {
-        int index = Random.Range(0, rows.Length);
+        int index = Random.Range(0, cells.Length);
         int startingIndex =  index;
         while (cells[index].occupied) 
         {

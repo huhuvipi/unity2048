@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using Unity.Collections;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class TileBoard : MonoBehaviour
 {
@@ -17,12 +18,6 @@ public class TileBoard : MonoBehaviour
     {
         grid = GetComponentInChildren<TileGrid>();
         tiles = new List<Tile>(16);
-    }
-    
-    private void Start() 
-    {
-        CreateTile();
-        CreateTile();
     }
 
     public void ClearBoard() {
@@ -69,7 +64,7 @@ public class TileBoard : MonoBehaviour
             {
                 TileCell cell = grid.GetCell(i, j);
                 if (cell.occupied) {
-                    changed = MoveTile(cell.tile, direction);
+                    changed |= MoveTile(cell.tile, direction);
                 }
             } 
         }
@@ -116,6 +111,7 @@ public class TileBoard : MonoBehaviour
         int index = Mathf.Clamp(IndexOf(b.state) + 1, 0, tileStates.Length - 1);
         int number = b.number * 2;
         b.SetState(tileStates[index], number);
+        gameManager.IncreaseScore(number);
     }
 
     private int IndexOf(TileState state) 
